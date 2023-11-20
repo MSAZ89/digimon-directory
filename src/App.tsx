@@ -46,29 +46,34 @@ function App() {
     : [];
 
   return (
-    <div className="p-2">
+    <div className="p-4 bg-black text-white min-h-screen text-center mx-auto flex flex-col items-center">
       <h1 className="font-bold text-lg mb-2">Digimon</h1>
       <input
         name="search"
-        className="border mb-2"
+        className="border mb-4 text-black p-1"
         type="text"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Search Digimon"
       />
-      <div className="grid md:grid-cols-2 lg:grid-cols-6">
+      <div className="flex flex-wrap gap-4 justify-center mx-auto">
         {filteredData.map((item: any) => (
           <div key={item.id}>
             <AlertDialog>
-              <AlertDialogTrigger className="border m-1 p-1">
-                {item.name}
+              <AlertDialogTrigger className="p-4 w-60 bg-slate-700">
+                <p className="mb-4">{item.name}</p>
+                <img className="" src={item.img} />
               </AlertDialogTrigger>
-              <AlertDialogContent className="flex gap-2 flex-wrap justify-between">
+              <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>{item.name}</AlertDialogTitle>
-                  <AlertDialogDescription>
-                    {item.level}
-                    {item.img && <img src={item.img} alt={item.name} />}
+                  <AlertDialogTitle className="mx-auto text-xl">
+                    {item.name}{" "}
+                    <span className="text-sm font-normal">({item.level})</span>
+                  </AlertDialogTitle>
+                  <AlertDialogDescription className="mx-auto">
+                    {item.img && (
+                      <img width={2000} src={item.img} alt={item.name} />
+                    )}
                   </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
